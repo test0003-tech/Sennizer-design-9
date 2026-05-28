@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Dealer {
+  id            String   @id @default(cuid())
+  storeCode     String   @unique
+  storeName     String
+  address1      String
+  address2      String?
+  address3      String?
+  locality      String
+  subLocality   String?
+  landmark      String?
+  state         String
+  city          String
+  pinCode       String
+  latitude      Float
+  longitude     Float
+  storefrontPhotos String  @default("[]")  // JSON array of URLs
+  inventoryPhotos  String  @default("[]")  // JSON array of URLs
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
